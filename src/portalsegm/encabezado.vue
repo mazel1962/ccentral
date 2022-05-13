@@ -26,7 +26,7 @@
   </div>
   </div>
 </template>
-<!-- SECCION DE LOS SCRIPT-->
+<!-- SECCION de DE LOS SCRIPT-->
 <script>
   import { defineComponent } from 'vue'
   import { VueDraggableNext } from 'vue-draggable-next'
@@ -45,7 +45,7 @@
         ],
         lista1: [
           { name: 'Madonna', id: 1 },
-          { name: 'Prince', id: 2 },
+          { name: 'Beyonce', id: 2 },
 
         ],
         dragging: false,
