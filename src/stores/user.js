@@ -8,30 +8,31 @@ export const useUserStore = defineStore('userStore',{
         nombreUsuario: ' ',
     }),
     actions: {
-      async  registerUsuario(usuario,clave){
-            this.identificadorUsuario = usuario;
-            this.passwordUsuario = clave;
-            const paramdata = new URLSearchParams("usuario=jsoto@vallesunidos.cl&contrasena=123456");
-                try{
-                  const res = await fetch('https://192.168.0.122:8443/MazelHazana/mztv/tov/entrada',{
-                    method: 'GET',
-                    mode: 'cors',
-                    body: paramdata,
-                    headers: {"Access-Control-Request-Method": "*"}
-                  }     
-                  )
-                  const data = await res.json();
-                  this.NombreUser(data)
-                this.identificadorUsuario=data  
-              }catch (error){ 
-                console.error();
-              }
+      async registerUsuario(usuario,clave){
+        alert(clave)
+          try{
+              alert("ANTES DEL AWAIT FETCH");
+              const pars = '&codusuario='+usuario;
+              const res = await fetch('http://192.168.0.122:40280/MazelHazana/mztv/tov/entrada?'+pars,{
+                method: 'GET',
+                mode: 'cors',
+                headers: {'Content-Type': 'application/json',"Access-Control-Request-Method": "*"},
+              }     
+              )
+              const data = await res.json();
+              alert(data.nombreusuario);
+              if(clave!=data.contrasena)
+                {
+                  alert("ERROR DATOS NO CORRESPONDEN")
+                  return;
+                }
+              this.identificadorUsuario = data.codigousuario;
+              this.passwordUsuario = data.contrasena;
+              this.nombreUsuario = data.nombreusuario;
+              
+          }catch (error){ 
+            console.error();
+          }
         },
-     NombreUser(valor){
-        state.arreglo=valor 
-        valor.forEach(function(ussr) {
-        state.nombreUsuario=ussr.nombreusuario
-      })
      }   
-    }
 })

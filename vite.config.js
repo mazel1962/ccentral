@@ -10,12 +10,13 @@ import fs from 'fs';
 
 export default defineConfig({
   server: {
-    https: {
+      port: 8080,
+  /*    https: {
       key: fs.readFileSync('C:/work/key.pem'),
       cert: fs.readFileSync('C:/work/cert.pem'),
-    },
-  },
-  plugins: [vue(),Components({
+    }, */
+  }, 
+    plugins: [vue(),Components({
     resolvers: [AntDesignVueResolver()],
   })],
 });
