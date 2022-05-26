@@ -12,7 +12,7 @@
       </div>
     </draggable>
   </div>
-
+<!-- SECCION DE LOS TEMPLATE -->
   <div class="flex m-10 bg-gray-200 mt-5 m-2 p-3 hover:bg-gray-300 w-1/4">
     <draggable class="dragArea list-group w-full" :list="lista1" @change="log" group = "task">
       <div 
