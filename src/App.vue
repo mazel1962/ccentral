@@ -6,9 +6,9 @@
     <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-3 h-32 col-start-11 col-end-13">
       <div class="grid grid-rows-4 grid-cols-6 gap-0 bg-yellow-400 text-neutral-900">    
         <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-2 col-end-4 h-8">Usuario</div>
-        <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-4 col-end-6 h-8"><input type="text" size="10" v-model="idUsuario" placeholder="Usuario"></div>
+        <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-4 col-end-6 h-8"><input type="text" size="15" v-model="idUsuario" placeholder="Usuario"></div>
         <div class="bg-yellow-400 text-neutral-900 row-start-3 row-end-4 col-start-2 col-end-4 h-8">Contraseña</div>
-        <div class="bg-yellow-400 text-neutral-900 row-start-3 row-end-4 col-start-4 col-end-6 h-8"><input type="text" size="10" v-model="pwUsuario" placeholder="Contrasena"></div>
+        <div class="bg-yellow-400 text-neutral-900 row-start-3 row-end-4 col-start-4 col-end-6 h-8"><input type="text" size="15" v-model="pwUsuario" placeholder="Contrasena"></div>
         <div class="bg-sky-900 text-plata text-center row-start-4 row-end-5 col-start-3 col-end-5 h-8"><button @click="ValidaUsuario()">Ingresar</button></div>
       </div>
     </div>
