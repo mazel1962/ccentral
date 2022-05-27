@@ -11,7 +11,6 @@ export const useUserStore = defineStore('userStore',{
       async registerUsuario(usuario,clave){
         alert(clave)
           try{
-              alert("ANTES DEL AWAIT FETCH");
               const pars = '&codusuario='+usuario;
               const res = await fetch('http://192.168.0.122:40280/MazelHazana/mztv/tov/entrada?'+pars,{
                 method: 'GET',
@@ -20,7 +19,6 @@ export const useUserStore = defineStore('userStore',{
               }     
               )
               const data = await res.json();
-              alert(data.nombreusuario);
               if(clave!=data.contrasena)
                 {
                   alert("ERROR DATOS NO CORRESPONDEN")
@@ -31,6 +29,7 @@ export const useUserStore = defineStore('userStore',{
               this.nombreUsuario = data.nombreusuario;
               
           }catch (error){ 
+            alert("ERROR EN AUTENTICACION")
             console.error();
           }
         },
