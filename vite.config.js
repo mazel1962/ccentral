@@ -10,7 +10,7 @@ import fs from 'fs';
 
 export default defineConfig({
   server: {
-      port: 8081,
+      port: 8080,
   /*    https: {
       key: fs.readFileSync('C:/work/key.pem'),
       cert: fs.readFileSync('C:/work/cert.pem'),
