@@ -4,6 +4,7 @@ import Entrada from "./views/Entrada.vue"
 
 const routes = [
     { path:'/' , component: Entrada},
+    { path:'/views/Entrada.vue', component: Entrada}
 ]
 
 const router = createRouter({

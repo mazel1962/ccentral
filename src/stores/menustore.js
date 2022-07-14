@@ -23,7 +23,7 @@ export const userMenuStore = defineStore('menuStore',{
                 }
                 const data = await res.json();
                 for(var i in data) {
-                    this.usuariomenu.nombre.push(data[i].titulo);
+                    this.usuariomenu.nombre.push(data[i].nombremenu);
                     this.usuariomenu.link.push(data[i].ruta);
                   }
             }catch (error){ 

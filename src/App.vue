@@ -53,9 +53,9 @@
     <div class="bg-sky-900 row-start-1  text-plata h-32 col-start-1 h-[683px] col-end-3">
        <div id="elemento">
          <nav>
-             <ul>
+             <ul>   
                 <li v-for="Item of menuselect" >
-                     <router-link v-bind:to="'./views/'+Item.linker">{{Item.nombre}}</router-link>
+                     <router-link v-bind:to="'/views/'+Item.linker">{{Item.nombre}}</router-link>
                 </li>
               </ul>
           </nav>
@@ -91,7 +91,7 @@ import { userMenuStore } from './stores/menustore';
         imgdos: '../dos.png',
         imgtres: '../tres.png',
         imgcuatro: '../cuatro.png',
-        menuselect:[{nombre:"Demo",linker:"Entrada.vue"}]
+        menuselect:[{nombre:"Demo",linker:'Entrada.vue'}]
 
       }
     },
@@ -124,8 +124,9 @@ import { userMenuStore } from './stores/menustore';
       FijarSesion(){
         const lm=this.menuselect.length;
         this.menuselect.splice(0,lm);
+        const DataUserStore=useUserStore();
         const menuStore = userMenuStore();
-        menuStore.fijarsesionmenuUsuario(idUsuario.value);
+        menuStore.fijarsesionmenuUsuario(DataUserStore.identificadorUsuario);
         for(let i=0;i<menuStore.usuariomenu.nombre.length;i++){
             this.menuselect.push({nombre:menuStore.usuariomenu.nombre[i],linker:menuStore.usuariomenu.link[i]})
         }
