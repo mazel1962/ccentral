@@ -67,7 +67,7 @@ export const useUserStore = defineStore('userStore',{
           }
 
          try{
-          const pars = '&codusuario='+this.identificadorUsuario;
+          const pars = '&codusuario='+usuario;
           const res1 = await fetch('http://192.168.0.122:40280/MazelHazana/mztv/tov/empprop?'+pars,{
             method: 'GET',
             mode: 'cors',
