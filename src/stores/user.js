@@ -26,6 +26,7 @@ export const useUserStore = defineStore('userStore',{
         identificadorUsuario: ' ',
         passwordUsuario: ' ',
         nombreUsuario: ' ',
+        tipousuario:0,
         identificadorEmpresaPropietaria: ' ',
         nombreEmpresaPropietaria: ' ',
         direccionEmpresaPropietaria: ' ',
@@ -59,7 +60,7 @@ export const useUserStore = defineStore('userStore',{
               this.identificadorUsuario = data.codigousuario;
               this.passwordUsuario = data.contrasena;
               this.nombreUsuario = data.nombreusuario;
-              
+              this.tipousuario = data.tipousuario;
           }catch (error){ 
             alert("ERROR EN AUTENTICACION")
             return;

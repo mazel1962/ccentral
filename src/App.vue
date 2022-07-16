@@ -38,31 +38,35 @@
         </div>
     </div> 
     <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-3 h-32 col-start-11 col-end-13">
-      <div class="grid grid-rows-4 grid-cols-7 gap-2 bg-yellow-400 text-neutral-900">
+      <div class="grid grid-rows-4 grid-cols-8 gap-2 bg-yellow-400 text-neutral-900">
         <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-2 col-start-1 col-end-4 h-8">Usuario</div>
-        <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-2 col-start-3 col-end-6 h-8"><input type="text" size = "15" v-model="idUsuario" placeholder="Usuario"></div>
+        <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-2 col-start-4 col-end-7 h-8"><input type="text" v-model="idUsuario" placeholder="Usuario"></div>
         <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-1 col-end-4 h-8">Contraseña</div>
-        <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-3 col-end-6 h-8"><input type="text" size = "15" v-model="pwUsuario" placeholder="Contraseña" @change="ValidaUsuario()"></div>
-        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-1 col-end-4 h-8"><button @click="IniciaSesion()">I SESION</button></div>
-        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-4 col-end-7 h-8"><button @click="FijarSesion()">F SESION</button></div>
+        <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-4 col-end-7 h-8"><input type="text" v-model="pwUsuario" placeholder="Contraseña" @change="ValidaUsuario()"></div>
+        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-2 col-end-3 h-8" v-if="bandera==1"><button @click="IniciaSesion()">I SESION</button></div>
+        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-2 col-end-3 h-8" v-else><button disabled>I SESION</button></div>
+        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-4 col-end-5 h-8" v-if="bandera==1"><button @click="FijarSesion()">F SESION</button></div>
+        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-4 col-end-5 h-8" v-else><button disabled>F SESION</button></div>
+        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-5 col-end-6 h-8" v-if="bandera==0"><button @click="CerrarSesion()">C SESION</button></div>
+        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-5 col-end-6 h-8" v-else><button disabled>C SESION</button></div>
       </div>
     </div>
   </div>
 <div class="bg-yellow-400 row-start-5 row-end-5 col-start-1 h-4 w-full col-end-13">05</div>   
   <div class="grid grid-cols-12 gap-0">
-    <div class="bg-sky-900 row-start-1  text-plata h-32 col-start-1 h-[683px] col-end-3">
-       <div id="elemento">
+    <div class="bg-sky-900 row-start-1  text-plata col-start-1 h-[683px] col-end-3">
          <nav>
              <ul>   
                 <li v-for="Item of menuselect" >
-                     <router-link v-bind:to="'/views/'+Item.linker">{{Item.nombre}}</router-link>
+                     <div v-if="Item.titulo==0" class="bg-blue-600 text-plata">{{Item.nombre}}</div>
+                     <div v-else class="bg-sky-900 text-plata"><router-link v-bind:to="'/views/'+Item.linker">{{Item.nombre}}</router-link></div>
                 </li>
               </ul>
           </nav>
-        </div>
-      </div> 
+    </div> 
     <div class="bg-plata row-start-1 h-32 col-start-3 h-[683px] col-end-13">
-         <router-view></router-view></div>   
+         <router-view></router-view>
+    </div>   
   </div>
  
   <div class="grid grid-cols-12 gap-0">
@@ -83,6 +87,7 @@ import { userMenuStore } from './stores/menustore';
     },
      data() {
       return {
+        bandera:1,
         enabled: true,
         arrcteopcion:[{id:0,name:"Demo",codcliente:"",direccion:"",giro:"",comuna:"",ciudad:"",rol:"",contacto:""}],
         arrctefijo:[{id:0,name:"Demo",codcliente:"",direccion:"",giro:"",comuna:"",ciudad:"",rol:"",contacto:""}],
@@ -91,8 +96,7 @@ import { userMenuStore } from './stores/menustore';
         imgdos: '../dos.png',
         imgtres: '../tres.png',
         imgcuatro: '../cuatro.png',
-        menuselect:[{nombre:"Demo",linker:'Entrada.vue'}]
-
+        menuselect:[{nombre:"Demo",linker:'Entrada.vue',titulo:0, publicacion:"bg-sky-600 text-plata"}]
       }
     },
     methods: {
@@ -122,16 +126,20 @@ import { userMenuStore } from './stores/menustore';
           }
         },
       FijarSesion(){
+        this.bandera=0;
+        const DataUserStore=useUserStore();
         const lm=this.menuselect.length;
         this.menuselect.splice(0,lm);
-        const DataUserStore=useUserStore();
         const menuStore = userMenuStore();
-        menuStore.fijarsesionmenuUsuario(DataUserStore.identificadorUsuario);
         for(let i=0;i<menuStore.usuariomenu.nombre.length;i++){
-            this.menuselect.push({nombre:menuStore.usuariomenu.nombre[i],linker:menuStore.usuariomenu.link[i]})
+           if(DataUserStore.tipousuario<=menuStore.usuariomenu.tpouser[i] || menuStore.usuariomenu.titulo[i]==0)
+              this.menuselect.push({nombre:menuStore.usuariomenu.nombre[i],linker:menuStore.usuariomenu.link[i],titulo:menuStore.usuariomenu.titulo[i],publicacion:menuStore.usuariomenu.publicacion[i]})
         }
     },
-    }
+    CerrarSesion(){
+             alert("cerrar sesion");
+    },
+   }
  });
 </script>
 <script setup>
@@ -142,9 +150,10 @@ import { userMenuStore } from './stores/menustore';
   const pwUsuario = ref('');
 
   const userStore = useUserStore();
-  
+  const menuStore = userMenuStore();
   const ValidaUsuario = () => {
         userStore.registerUsuario(idUsuario.value,pwUsuario.value)
+        menuStore.fijarsesionmenuUsuario(idUsuario.value);
   }; 
 </script>
 

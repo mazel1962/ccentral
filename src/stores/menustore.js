@@ -1,8 +1,8 @@
-import { defineStore} from "pinia";
+import {defineStore} from "pinia";
 
 export const userMenuStore = defineStore('menuStore',{
     state: () => ({
-        usuariomenu:{nombre:[],link:[]}
+        usuariomenu:{nombre:[],link:[],tpouser:[],titulo:[],publicacion:[]}
         }
     ),
     actions: {
@@ -25,6 +25,9 @@ export const userMenuStore = defineStore('menuStore',{
                 for(var i in data) {
                     this.usuariomenu.nombre.push(data[i].nombremenu);
                     this.usuariomenu.link.push(data[i].ruta);
+                    this.usuariomenu.tpouser.push(data[i].tipousuario);
+                    this.usuariomenu.titulo.push(data[i].titulo);
+                    this.usuariomenu.publicacion.push(data[i].publicacion);
                   }
             }catch (error){ 
               alert("ERROR EN AUTENTICACION")
