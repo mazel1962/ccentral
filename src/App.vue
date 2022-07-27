@@ -2,16 +2,21 @@
   <div class="grid grid-rows-2 grid-cols-12 gap-0">  
     <div class="bg-yellow-400 row-start-1 row-end-3 h-32 col-start-1 col-end-3">01</div>
       <div class="bg-yellow-400 row-start-1 row-end-2 h-16 col-start-3 col-end-11">
-        <div class="flex space-x-1 h-16 w-full flex-nowrap overflow-x-auto">
+        <div class="flex space-x-1 h-16 w-full flex-nowrap overflow-x-auto" v-if="bandera==0">
             <draggable class="dragArea list-group w-full flex flex-nowrap" :list="arrcteopcion" @start="cambio" group = "task">
               <div class="list-group-item top-0 h-12 w-48 bg-fuchsia-900 text-plata rounded-lg flex flex-nowrap" v-for="ia in arrcteopcion" :key="ia.id">
                 {{ia.name}}
               </div> 
             </draggable>
-          </div>    
+        </div>
+        <div class="flex space-x-1 h-16 w-full flex-nowrap overflow-x-auto" v-else>
+            <div class="list-group-item top-0 h-12 w-48 bg-fuchsia-900 text-plata rounded-lg flex flex-nowrap" v-for="ia in arrcteopcion" :key="ia.id">
+               {{ia.name}}
+            </div> 
+        </div>         
       </div>
     <div class="bg-yellow-100 row-start-2 row-end-3 h-16 col-start-3 col-end-11">
-        <div class="flex space-x-1 h-16 w-full flex-nowrap">
+        <div class="flex space-x-1 h-16 w-full flex-nowrap" v-if="bandera==0">
           <draggable class="dragArea list-group w-full flex flex-nowrap" :list="arrctefijo" @change="cambiofijo" group = "task">
             <div class=" top-0 h-12 w-48 text-plata bg-fuchsia-900 rounded-lg list-group-item flex flex-nowrap" v-for="ib in arrctefijo" :key="ib.id">
               {{ib.name}} 
@@ -36,20 +41,46 @@
             </div>
          </draggable>
         </div>
+          <div class="flex space-x-1 h-16 w-full flex-nowrap" v-else>
+            <div class=" top-0 h-12 w-48 text-plata bg-fuchsia-900 rounded-lg list-group-item flex flex-nowrap" v-for="ib in arrctefijo" :key="ib.id">
+              {{ib.name}} 
+            </div>
+            <div class=" top-0 h-12 w-48 text-plata bg-fuchsia-900 rounded-lg list-group-item flex flex-nowrap" v-for="ib in arrctefijo" :key="ib.id">
+              {{ib.direccion}} 
+            </div>
+            <div class=" top-0 h-12 w-48 text-plata bg-fuchsia-900 rounded-lg list-group-item flex flex-nowrap" v-for="ib in arrctefijo" :key="ib.id">
+              {{ib.comuna}} 
+            </div>
+            <div class=" top-0 h-12 w-48 text-plata bg-fuchsia-900 rounded-lg list-group-item flex flex-nowrap" v-for="ib in arrctefijo" :key="ib.id">
+              {{ib.ciudad}} 
+            </div>
+            <div class=" top-0 h-12 w-48 text-plata bg-fuchsia-900 rounded-lg list-group-item flex flex-nowrap" v-for="ib in arrctefijo" :key="ib.id">
+              {{ib.giro}} 
+            </div>
+            <div class=" top-0 h-12 w-48 text-plata bg-fuchsia-900 rounded-lg list-group-item flex flex-nowrap" v-for="ib in arrctefijo" :key="ib.id">
+              {{ib.rol}} 
+            </div>
+            <div class=" top-0 h-12 w-48 text-plata bg-fuchsia-900 rounded-lg list-group-item flex flex-nowrap" v-for="ib in arrctefijo" :key="ib.id">
+              {{ib.contacto}} 
+            </div>
+        </div>
+
     </div> 
     <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-3 h-32 col-start-11 col-end-13">
-      <div class="grid grid-rows-4 grid-cols-8 gap-2 bg-yellow-400 text-neutral-900">
-        <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-2 col-start-1 col-end-4 h-8">Usuario</div>
-        <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-2 col-start-4 col-end-7 h-8"><input type="text" v-model="idUsuario" placeholder="Usuario"></div>
-        <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-1 col-end-4 h-8">Contraseña</div>
-        <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-4 col-end-7 h-8"><input type="text" v-model="pwUsuario" placeholder="Contraseña" @change="ValidaUsuario()"></div>
-        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-2 col-end-3 h-8" v-if="bandera==1"><button @click="IniciaSesion()">I SESION</button></div>
-        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-2 col-end-3 h-8" v-else><button disabled>I SESION</button></div>
-        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-4 col-end-5 h-8" v-if="bandera==1"><button @click="FijarSesion()">F SESION</button></div>
-        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-4 col-end-5 h-8" v-else><button disabled>F SESION</button></div>
-        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-5 col-end-6 h-8" v-if="bandera==0"><button @click="CerrarSesion()">C SESION</button></div>
-        <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-5 col-end-6 h-8" v-else><button disabled>C SESION</button></div>
-      </div>
+        <div class="grid grid-rows-2 grid-cols-8 gap-2 bg-yellow-400 text-neutral-900 row-start-1 row-end-2">
+          <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-2 col-start-1 col-end-4 h-8">Usuario</div>
+          <div class="bg-yellow-400 text-neutral-900 row-start-1 row-end-2 col-start-4 col-end-7 h-8"><input type="text" v-model="idUsuario" placeholder="Usuario"></div>
+          <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-1 col-end-4 h-8">Contraseña</div>
+          <div class="bg-yellow-400 text-neutral-900 row-start-2 row-end-3 col-start-4 col-end-7 h-8"><input type="text" v-model="pwUsuario" placeholder="Contraseña" @change="ValidaUsuario()"></div>
+        </div>
+       <div class="grid grid-rows-2 grid-cols-8 gap-2 bg-yellow-400 text-neutral-900 row-star-3 row-end-4">
+          <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-4 col-end-5 h-8" v-if="bandera<=0"><button @click="IniciaSesion()">I</button></div>
+          <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-4 col-end-5 h-8" v-else><button disabled>I</button></div>
+          <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-5 col-end-6 h-8" v-if="bandera==0"><button @click="FijarSesion()">F</button></div>
+          <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-5 col-end-6 h-8" v-else><button disabled>F</button></div>
+          <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-6 col-end-7 h-8" v-if="bandera==1"><button @click="CerrarSesion()">C</button></div>
+          <div class="bg-sky-900 text-plata text-center row-start-3 row-end-4 col-start-6 col-end-7 h-8" v-else><button disabled>C</button></div>
+       </div>
     </div>
   </div>
 <div class="bg-yellow-400 row-start-5 row-end-5 col-start-1 h-4 w-full col-end-13">05</div>   
@@ -87,15 +118,11 @@ import { userMenuStore } from './stores/menustore';
     },
      data() {
       return {
-        bandera:1,
+        bandera:-1,
         enabled: true,
         arrcteopcion:[{id:0,name:"Demo",codcliente:"",direccion:"",giro:"",comuna:"",ciudad:"",rol:"",contacto:""}],
         arrctefijo:[{id:0,name:"Demo",codcliente:"",direccion:"",giro:"",comuna:"",ciudad:"",rol:"",contacto:""}],
         dragging: false,
-        imguno: '../uno.png',
-        imgdos: '../dos.png',
-        imgtres: '../tres.png',
-        imgcuatro: '../cuatro.png',
         menuselect:[{nombre:"Demo",linker:'Entrada.vue',titulo:0, publicacion:"bg-sky-600 text-plata"}]
       }
     },
@@ -108,6 +135,7 @@ import { userMenuStore } from './stores/menustore';
 
       },
       IniciaSesion(){
+          this.bandera=0;
           const DataUserStore=useUserStore();
           const lf=this.arrctefijo.length;
           const lo=this.arrcteopcion.length;
@@ -126,7 +154,7 @@ import { userMenuStore } from './stores/menustore';
           }
         },
       FijarSesion(){
-        this.bandera=0;
+        this.bandera=1;
         const DataUserStore=useUserStore();
         const lm=this.menuselect.length;
         this.menuselect.splice(0,lm);
