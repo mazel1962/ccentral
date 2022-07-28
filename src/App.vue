@@ -111,6 +111,8 @@ import { VueDraggableNext } from 'vue-draggable-next'
 import { defineComponent} from 'vue'
 import { useUserStore } from './stores/user';
 import { userMenuStore } from './stores/menustore';
+import { useClienteStore} from './stores/clienteStore';
+
  export default defineComponent({
     components: {
       draggable: VueDraggableNext,
@@ -163,6 +165,8 @@ import { userMenuStore } from './stores/menustore';
            if(DataUserStore.tipousuario<=menuStore.usuariomenu.tpouser[i] || menuStore.usuariomenu.titulo[i]==0)
               this.menuselect.push({nombre:menuStore.usuariomenu.nombre[i],linker:menuStore.usuariomenu.link[i],titulo:menuStore.usuariomenu.titulo[i],publicacion:menuStore.usuariomenu.publicacion[i]})
         }
+        const DataClienteStore=useClienteStore();
+        DataClienteStore.defineCliente(DataUserStore.identificadorEmpresaPropietaria,this.arrctefijo[0].codcliente);
     },
     CerrarSesion(){
              alert("cerrar sesion");
