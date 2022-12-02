@@ -68,14 +68,40 @@ export const useComprobanteStore = defineStore('comprobanteStore',{
           }
         },
         async grabarComprobante(codigoempresapropietaria, codigoempresapropietariacliente){
-
+          const pars = '&codigoempresaduena=' + codigoempresapropietaria + '&codigoempresa=' + codigoempresapropietariacliente;
+          pars = pars +'&periodoanual='+this.periodoanualcomprobante+'&periodomes='+this.periodomescomprobante+'&folio='+this.foliocomprobante;
+          pars = pars +'&fecha='+this.fechacomprobante+'&tipo='+this.tipocomprobante+'&glosa='+this.glosacomprobante;  
+          for(let i=0;i<150;i++){
+            if(this.cbte.debe[i]>0 || this.cbte.haber[i]>0){
+              pars = pars + '&codcta='+ this.cbte.codcta[i];
+              pars = pars + '&glosadet=' + this.cbte.glosa[i];
+              pars = pars + '&debe=' + this.cbte.debe[i];
+              pars = pars + '&haber=' + this.cbte.haber[i];
+              pars = pars + '&auxiliar=' + this.cbte.auxiliar[i];
+              pars = pars + '&tipodocto=' + this.cbte.tipodocto[i];
+              pars = pars + '&numdocto=' + this.cbte.numdocto[i];
+              pars = pars + '&fechadocto=' + this.cbte.fechadocto[i];
+              pars = pars + '&vctodocto=' + this.cbte.vctodocto[i];              
+              pars = pars + '&tipodocref=' + this.cbte.tipodocref[i];
+              pars = pars + '&numdocref=' + this.cbte.numdocref[i];
+            }
+          }
           try{
-
+              const res = await fetch('http://192.168.0.122:40280/MazelHazana/mztv/tov/actualizarcomprobante?' + pars,{
+              method: 'GET',
+              mode: 'cors',
+              headers: {'Content-Type': 'application/json',"Access-Control-Request-Method": "*"},
+            })
+            if(res.ok==false || res.status!=200){
+              alert("ERROR REPOSITORIO DE DATOS")
+              return;
+            }
+            const data = await res.json();
           }catch(error){
-
+            alert("Error en Tipo Movimiento :   " + error )
+              console.error();
           }
 
-        
         },
         async obtenertipomovimiento(codigoempresapropietaria, codigoempresapropietariacliente){
             

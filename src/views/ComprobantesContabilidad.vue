@@ -314,12 +314,7 @@ const GrabarComprobante = () =>{
       if(comprobanteStore.totaldebe!=comprobanteStore.totalhaber){
         alert("ERROR: COMPROBANTE DESCUADRADO");
       }
-      
-
-
-
-
-
+      comprobanteStore.grabarComprobante(`${userStore.identificadorEmpresaPropietaria}`, `${ClienteStore.identificadorEmpresaCliente}`);
 }
 const SumarLineas = () =>{
     comprobanteStore.totallineas=parseInt(0)
