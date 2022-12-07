@@ -68,11 +68,11 @@ export const useComprobanteStore = defineStore('comprobanteStore',{
           }
         },
         async grabarComprobante(codigoempresapropietaria, codigoempresapropietariacliente){
-          const pars = '&codigoempresaduena=' + codigoempresapropietaria + '&codigoempresa=' + codigoempresapropietariacliente;
+          var pars = '&codigoempresaduena=' + codigoempresapropietaria + '&codigoempresa=' + codigoempresapropietariacliente;
           pars = pars +'&periodoanual='+this.periodoanualcomprobante+'&periodomes='+this.periodomescomprobante+'&folio='+this.foliocomprobante;
           pars = pars +'&fecha='+this.fechacomprobante+'&tipo='+this.tipocomprobante+'&glosa='+this.glosacomprobante;  
           for(let i=0;i<150;i++){
-            if(this.cbte.debe[i]>0 || this.cbte.haber[i]>0){
+            if(parseInt(this.cbte.debe[i])>0 || parseInt(this.cbte.haber[i])>0){
               pars = pars + '&codcta='+ this.cbte.codcta[i];
               pars = pars + '&glosadet=' + this.cbte.glosa[i];
               pars = pars + '&debe=' + this.cbte.debe[i];
@@ -209,20 +209,20 @@ export const useComprobanteStore = defineStore('comprobanteStore',{
                 this.cbte.tipodocref[0]=data1.tipomovdoctoreferencia;
                 this.cbte.numdocref[0]=data1.numdoctoreferencia;
               }else{
-                for(let i=0;i<data1.length;i++){
-                this.cbte.codcta[i] = data1[i].codigoctacontable;
-                this.cbte.glosa[i] = data1[i].glosa;
-                this.cbte.debe[i] = data1[i].debe;
-                this.cbte.haber[i] = data1[i].haber;
-                this.cbte.auxiliar[i] = data1[i].codigoauxiliar;
-                this.cbte.tipodocto[i] = data1[i].tipomovdocto;
-                this.cbte.numdocto[i] = data1[i].nummovdocto;
-                this.str = new Date(data1[i].fechadocto);
-                this.cbte.fechadocto[i]=this.str.getFullYear() + '-' + ((this.str.getMonth() < 9) ? '0' : '') + (this.str.getMonth() + 1) + '-' + ((this.str.getDate() < 10) ? '0' : '') + this.str.getDate();
-                this.str = new Date(data1[i].fechavctodocto);
-                this.cbte.vctodocto[i]=this.str.getFullYear() + '-' + ((this.str.getMonth() < 9) ? '0' : '') + (this.str.getMonth() + 1) + '-' + ((this.str.getDate() < 10) ? '0' : '') + this.str.getDate();
-                this.cbte.tipodocref[i] = data1[i].tipomovdoctoreferencia;
-                this.cbte.numdocref[i] = data1[i].numdoctoreferencia;
+                for(let ji=0;ji<data1.length;ji++){
+                this.cbte.codcta[ji] = data1[ji].codigoctacontable;
+                this.cbte.glosa[ji] = data1[ji].glosa;
+                this.cbte.debe[ji] = data1[ji].debe;
+                this.cbte.haber[ji] = data1[ji].haber;
+                this.cbte.auxiliar[ji] = data1[ji].codigoauxiliar;
+                this.cbte.tipodocto[ji] = data1[ji].tipomovdocto;
+                this.cbte.numdocto[ji] = data1[ji].nummovdocto;
+                this.str = new Date(data1[ji].fechadocto);
+                this.cbte.fechadocto[ji]=this.str.getFullYear() + '-' + ((this.str.getMonth() < 9) ? '0' : '') + (this.str.getMonth() + 1) + '-' + ((this.str.getDate() < 10) ? '0' : '') + this.str.getDate();
+                this.str = new Date(data1[ji].fechavctodocto);
+                this.cbte.vctodocto[ji]=this.str.getFullYear() + '-' + ((this.str.getMonth() < 9) ? '0' : '') + (this.str.getMonth() + 1) + '-' + ((this.str.getDate() < 10) ? '0' : '') + this.str.getDate();
+                this.cbte.tipodocref[ji] = data1[ji].tipomovdoctoreferencia;
+                this.cbte.numdocref[ji] = data1[ji].numdoctoreferencia;
                 }
               }
           }catch (error){

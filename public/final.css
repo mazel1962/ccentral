@@ -1089,10 +1089,6 @@ h2 {
   width: 60%;
 }
 
-.w-2\/12 {
-  width: 16.666667%;
-}
-
 .w-1\/2 {
   width: 50%;
 }
@@ -1753,11 +1749,6 @@ h2 {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
-.shadow-blue-400\/50 {
-  --tw-shadow-color: rgb(96 165 250 / 0.5);
-  --tw-shadow: var(--tw-shadow-colored);
-}
-
 .outline {
   outline-style: solid;
 }
@@ -1814,11 +1805,6 @@ h2 {
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-blue-900:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
 }
 
 

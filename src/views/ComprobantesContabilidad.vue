@@ -75,14 +75,14 @@
                 <tbody>
                     <tr v-for="i in comprobanteStore.cbte.codcta.length">
                         <td><label>{{RenderIndice(i)}}</label></td>
-                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="codcta" v-model="comprobanteStore.cbte.codcta[i]" size="7"  @blur="ValidaCodigoCuenta(i)"></td>
-                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="nomcta" v-model="comprobanteStore.cbte.nomcta[i]" size="20" @keyup="NomctaAutoComplete(i)"></td>
-                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="glosa" v-model="comprobanteStore.cbte.glosa[i]" size="20" @blur="ValidaGlosa(i)"></td>
-                        <td><input type="number" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="debe" v-model="comprobanteStore.cbte.debe[i]" size="7" @blur="ValidaDebe(i)"></td>
-                        <td><input type="number" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="haber" v-model="comprobanteStore.cbte.haber[i]" size="7" @blur="ValidaHaber(i)"></td>
-                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="auxiliar" v-model="comprobanteStore.cbte.auxiliar[i]" size="7" @blur="ValidaAuxiliar(i)"></td>
-                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="razonsocial" v-model="comprobanteStore.cbte.razonsocial[i]" size="20" @keyup="RazonSocialAutoComplete(i)"></td>
-                        <td><select class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="tipodocto" v-model="comprobanteStore.cbte.tipodocto[i]">
+                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="codcta" v-model="comprobanteStore.cbte.codcta[i-1]" size="7"  @blur="ValidaCodigoCuenta(i-1)"></td>
+                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="nomcta" v-model="comprobanteStore.cbte.nomcta[i-1]" size="20" @keyup="NomctaAutoComplete(i-1)"></td>
+                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="glosa" v-model="comprobanteStore.cbte.glosa[i-1]" size="20" @blur="ValidaGlosa(i-1)"></td>
+                        <td><input type="number" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="debe" v-model="comprobanteStore.cbte.debe[i-1]" size="7" @blur="ValidaDebe(i-1)"></td>
+                        <td><input type="number" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="haber" v-model="comprobanteStore.cbte.haber[i-1]" size="7" @blur="ValidaHaber(i-1)"></td>
+                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="auxiliar" v-model="comprobanteStore.cbte.auxiliar[i-1]" size="7" @blur="ValidaAuxiliar(i-1)"></td>
+                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="razonsocial" v-model="comprobanteStore.cbte.razonsocial[i-1]" size="20" @keyup="RazonSocialAutoComplete(i-1)"></td>
+                        <td><select class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="tipodocto" v-model="comprobanteStore.cbte.tipodocto[i-1]">
                                 <option disabled value="">TIPO MOV</option>
                                 <option v-for="j in comprobanteStore.TipoMovimiento.codigotipomovimiento.length"
                                     v-bind:key="comprobanteStore.TipoMovimiento.codigotipomovimiento[j - 1]"
@@ -91,10 +91,10 @@
                                 </option>
                             </select>
                         </td>
-                        <td><input type="number" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="numdocto" v-model="comprobanteStore.cbte.numdocto[i]" size="7"></td>
-                        <td><input type="date" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="fechadocto" v-model="comprobanteStore.cbte.fechadocto[i]" size="7"></td>
-                        <td><input type="date" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="vctodocto" v-model="comprobanteStore.cbte.vctodocto[i]" size="7"></td>
-                        <td><select class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="tipodocref" v-model="comprobanteStore.cbte.tipodocref[i]">
+                        <td><input type="number" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="numdocto" v-model="comprobanteStore.cbte.numdocto[i-1]" size="7"></td>
+                        <td><input type="date" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="fechadocto" v-model="comprobanteStore.cbte.fechadocto[i-1]" size="7"></td>
+                        <td><input type="date" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="vctodocto" v-model="comprobanteStore.cbte.vctodocto[i-1]" size="7"></td>
+                        <td><select class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="tipodocref" v-model="comprobanteStore.cbte.tipodocref[i-1]">
                                 <option disabled value="">TIPO MOV</option>
                                 <option v-for="k in comprobanteStore.TipoMovimiento.codigotipomovimiento.length"
                                     v-bind:key="comprobanteStore.TipoMovimiento.codigotipomovimiento[k - 1]"
@@ -103,7 +103,7 @@
                                 </option>
                             </select>
                         </td>
-                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="numdocref" v-model="comprobanteStore.cbte.numdocref[i]" size="7" @blur="ValidaNumdocref(i)" @keyup="NumdocrefAutoComplete(i)"></td>
+                        <td><input type="text" class="bg-stone-300 text-slate-900 rounded hover:bg-blue-200 shadow-lg shadow-slate-400/50" name="numdocref" v-model="comprobanteStore.cbte.numdocref[i-1]" size="7" @blur="ValidaNumdocref(i)" @keyup="NumdocrefAutoComplete(i)"></td>
                     </tr>
                 </tbody>    
             </table>    
